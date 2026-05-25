@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWD AI</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            width: 260px;
+            background: #0f172a;
+            color: white;
+        }
+
+        .container {
+            padding: 15px;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .status {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .safe {
+            color: #22c55e;
+        }
+
+        .danger {
+            color: #ef4444;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .dot.safe {
+            background: #22c55e;
+        }
+
+        .dot.danger {
+            background: #ef4444;
+        }
+
+        .footer {
+            margin-top: 12px;
+            font-size: 11px;
+            color: #64748b;
+        }
+        .invalid {
+    color: #3b82f6; /* blue */
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>🛡️ PWD AI</h2>    
+<div class="subtitle">Phishing Detection</div>
+
+    <div class="card">
+        <div id="status" class="status">Checking...</div>
+    </div>
+
+    <div class="footer">
+        Real-time protection enabled
+    </div>
+
+</div>
+
+<script src="popup.js"></script>
+
+</body>
+</html>

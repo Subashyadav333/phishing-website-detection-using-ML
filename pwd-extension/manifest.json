@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "PWD AI Phishing Detector",
+  "version": "1.0",
+  "description": "Real-time phishing detection using ML + Rule-based system",
+
+  "permissions": [
+    "tabs",
+    "notifications",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://*.onrender.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/safe.png",
+      "48": "icons/safe.png",
+      "128": "icons/safe.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/safe.png",
+    "48": "icons/safe.png",
+    "128": "icons/safe.png"
+  }
+}

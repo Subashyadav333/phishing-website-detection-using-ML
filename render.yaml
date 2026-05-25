@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: phishguard
+    runtime: python
+    buildCommand: ""
+    startCommand: gunicorn app:app

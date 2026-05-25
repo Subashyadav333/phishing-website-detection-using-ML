@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PWD AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>🛡️ PWD AI</h1>
+        <p class="subtitle">Phishing Website Detection System</p>
+
+        <form action="/predict" method="post" onsubmit="showLoader()">
+            <input type="text" name="url" placeholder="Enter website URL..." required>
+            <button type="submit">Scan</button>
+        </form>
+
+        <div id="loader" class="loader" style="display:none;">
+            <div class="spinner"></div>
+            <p>Analyzing website security...</p>
+        </div>
+    </div>
+
+    {% if prediction_text %}
+
+    <!-- RISK GAUGE -->
+    <div class="gauge-container">
+        <div class="gauge 
+            {% if confidence < 20 %}safe
+            {% elif confidence < 70 %}warn
+            {% else %}danger
+            {% endif %}">
+
+            <div class="gauge-inner">
+                <h2>{{ confidence }}%</h2>
+                <p>Risk Score</p>
+            </div>
+        </div>
+
+        <div class="status-text">
+            {{ prediction_text }}
+        </div>
+
+        <!-- 🔥 HIGHLIGHTED URL -->
+        <div class="scanned-url">
+            🔗 Scanned URL:
+            <span>{{ highlighted_url|safe }}</span>
+        </div>
+
+        <!-- 🔥 NEW: SMALL REASON LABEL -->
+        <div class="reason-label">
+            {% if reasons and reasons|length > 0 %}
+                {{ reasons[0] }}
+            {% else %}
+                No suspicious indicators detected
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- ANALYSIS GRID -->
+    <div class="grid">
+
+        <div class="card">
+            <h3>🔒 SSL Security</h3>
+            <p class="{{ 'safe' if ssl else 'danger' }}">
+                {{ "Secure" if ssl else "Not Secure" }}
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Domain Status</h3>
+            <p class="{{ 'safe' if dns else 'danger' }}">
+                {{ "Reachable" if dns else "Not Reachable" }}
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>⚠️ Detected Indicators</h3>
+            <ul>
+                {% for r in reasons %}
+                <li>{{ r }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📊 Risk Score</h3>
+            <p>{{ confidence }}%</p>
+        </div>
+
+    </div>
+
+    
+
+    {% endif %}
+
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+</body>
+</html>
